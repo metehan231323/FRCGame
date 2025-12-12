@@ -27,20 +27,20 @@ var Sprite = null;
 # Determines the current state machine of the target enemy. Do not change this via setting it directly, use ChangeStateMachine instead.
 var FiniteStateMachine = 0;
 
-func _init(name : String, Sprite : Sprite2D, StateMachineLevel : int):
-	internalname = name;
-	Sprite = Sprite;
+func _init(Enemyname : String, sprite : Sprite2D, StateMachineLevel : int):
+	internalname = Enemyname;
+	Sprite = sprite;
 	StateMachineLevel = StateMachineLevel;
 	enemyID = UUIDIndex;
 	UUIDIndex += 1;
 	OnAdded.emit(name, Sprite, StateMachineLevel);
-	if StateMachineLevel > 1:
+	if StateMachineLevel < 2:
 		self.InitPathfind(StateMachineLevel);
 	else:
-		self.InitScriptableWithClass();
+		self.InitScriptableWithClass("SomeEnemyClass");
 
 		
-func InitScriptableWithClass():
+func InitScriptableWithClass(ClassName : String):
 	pass
 	
 	

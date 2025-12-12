@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1ljabf8a6642"
-path="res://.godot/imported/speechbubble.png-41a7338c90821dd6b0492049f9e6458f.ctex"
+uid="uid://dyw3y308amcrf"
+path="res://.godot/imported/Scorpion.png-2b89a90c4e57a7316ed209afe63dc4e1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://New/speechbubble.png"
-dest_files=["res://.godot/imported/speechbubble.png-41a7338c90821dd6b0492049f9e6458f.ctex"]
+source_file="res://assets/sprites/Scorpion.png"
+dest_files=["res://.godot/imported/Scorpion.png-2b89a90c4e57a7316ed209afe63dc4e1.ctex"]
 
 [params]
 
