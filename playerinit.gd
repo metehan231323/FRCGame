@@ -1,12 +1,12 @@
 extends CharacterBody2D
 
 
-@export var speed : int = 300;
+@export var speed : int = 100;
 @export var gravity : int = 300;
 @export var jumpforce : int = 200;
 @export var hasDoubleJump : bool = true;
 @export var Health : int = 3;
-@export var gravityprone = true; # controls gravity
+@export var gravityprone = true; # controls gravityd
 @export var iframes = false; # controls if char has iframes
 @onready var sprite = $Sprite2D;
 @onready var HurtBox = $Sprite2D/HurtArea/Hurtbox;
@@ -33,6 +33,7 @@ func _ready() -> void:
 	connectListeners();
 	print("Connected signals");
 	
+
 	# Cam.setSteppedclbk(func(): print("this is from the clbk"));
 	# await get_tree().create_timer(2.0).timeout;
 	# Cam.clearSteppedclbk();
@@ -93,6 +94,7 @@ func _physics_process(delta: float) -> void:
 	if direction:
 		velocity.x = direction * speed;
 	else:
+		
 		velocity.x = move_toward(velocity.x, 0, speed);
 	move_and_slide();
 
