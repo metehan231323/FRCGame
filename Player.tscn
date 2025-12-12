@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://3d6danocgmgj"]
 
 [ext_resource type="Script" uid="uid://cp1byl81dtixm" path="res://playerinit.gd" id="1_kpjcp"]
-[ext_resource type="Texture2D" uid="uid://c1ljabf8a6642" path="res://New/speechbubble.png" id="2_kne1u"]
+[ext_resource type="Texture2D" uid="uid://c1ljabf8a6642" path="res://New/speechbubble.png" id="2_kpjcp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e80uo"]
 size = Vector2(172, 95)
@@ -15,9 +15,9 @@ collision_mask = 0
 script = ExtResource("1_kpjcp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(3.8146973e-06, -3.8146973e-06)
-scale = Vector2(0.08405172, 0.037711214)
-texture = ExtResource("2_kne1u")
+position = Vector2(0.5000005, -0.5000005)
+scale = Vector2(0.08405172, 0.038402457)
+texture = ExtResource("2_kpjcp")
 
 [node name="HurtArea" type="Area2D" parent="Sprite2D"]
 
@@ -27,7 +27,7 @@ scale = Vector2(2, 5)
 shape = SubResource("RectangleShape2D_e80uo")
 debug_color = Color(1, 1, 1, 0.41960785)
 
-[node name="Hitbox" type="CollisionShape2D" parent="."]
+[node name="PlayerHitbox" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, -0.5)
 scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_cxr5p")

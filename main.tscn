@@ -780,7 +780,7 @@ physics_layer_0/physics_material = SubResource("PhysicsMaterial_0xm2m")
 sources/0 = SubResource("TileSetAtlasSource_7mycd")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
-size = Vector2(1152, 161)
+size = Vector2(7711, 172.5)
 
 [node name="Node2D" type="Node2D"]
 
@@ -808,7 +808,7 @@ position = Vector2(148, 33)
 [node name="DeathZone" type="Area2D" parent="."]
 
 [node name="BBox" type="CollisionShape2D" parent="DeathZone"]
-position = Vector2(576, 562.5)
+position = Vector2(651.5, 568.75)
 shape = SubResource("RectangleShape2D_h2yge")
 
 [node name="BGMusicPlayer" type="AudioStreamPlayer2D" parent="."]

@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 Global="*res://Modules/Global.gd"
 User="*res://Modules/Enemy.gd"
 
+[dotnet]
+
+project/assembly_name="ScorpGameTest"
+
 [editor]
 
 version_control/plugin_name="GitPlugin"
