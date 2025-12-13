@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://dyw3y308amcrf" path="res://assets/sprites/Scorpion.png" id="2_kpjcp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e80uo"]
-size = Vector2(176.12674, 99.53464)
+size = Vector2(206.66437, 93.73961)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cxr5p"]
-size = Vector2(66, 48)
+size = Vector2(90, 45)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 collision_layer = 0
@@ -15,20 +15,21 @@ collision_mask = 0
 script = ExtResource("1_kpjcp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0.49353835, -3.8146973e-06)
-scale = Vector2(0.086025864, 0.037711214)
+position = Vector2(6.677834, -0.42106915)
+scale = Vector2(-0.10887218, 0.046938535)
 texture = ExtResource("2_kpjcp")
+flip_h = true
 
 [node name="HurtArea" type="Area2D" parent="Sprite2D"]
 
 [node name="Hurtbox" type="CollisionShape2D" parent="Sprite2D/HurtArea"]
 texture_filter = 1
-position = Vector2(4.1267405, 16.336603)
-scale = Vector2(2, 5.0000005)
+position = Vector2(10.818493, 8.97065)
+scale = Vector2(2, 5)
 shape = SubResource("RectangleShape2D_e80uo")
 debug_color = Color(1, 1, 1, 0.41960785)
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
-position = Vector2(1, 0)
+position = Vector2(5.5, 0.25)
 scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_cxr5p")

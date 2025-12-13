@@ -94,9 +94,9 @@ func _physics_process(delta: float) -> void:
 	if direction:
 		match direction:
 			-1.0:
-				sprite.flip_h = true;
-			1.0:
 				sprite.flip_h = false;
+			1.0:
+				sprite.flip_h = true;
 				
 		velocity.x = direction * speed;
 	else:

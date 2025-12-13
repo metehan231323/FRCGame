@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://dspyygs5le4nb"]
+[gd_scene load_steps=12 format=4 uid="uid://dspyygs5le4nb"]
 
 [ext_resource type="Texture2D" uid="uid://cmqvgo12irw6c" path="res://New/Solaria Demo Tiles.png" id="1_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://b7cqeendc15gk" path="res://assets/sprites/ismetbackground.jpg" id="2_7mycd"]
@@ -6,10 +6,9 @@
 [ext_resource type="Script" uid="uid://d1sdbpv8el428" path="res://Camera.gd" id="3_h2yge"]
 [ext_resource type="AudioStream" uid="uid://dfvjf5s50ejun" path="res://assets/sounds/save.mp3" id="4_1bvp3"]
 [ext_resource type="Script" uid="uid://bxqbqktfoj2bd" path="res://Modules/MusicHandler.gd" id="5_lquwl"]
+[ext_resource type="Texture2D" uid="uid://cry3sepcku3gv" path="res://assets/rock64_16x16.jpg" id="7_272bh"]
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0xm2m"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7mycd"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_272bh"]
 texture = ExtResource("1_0xm2m")
 0:0/0 = 0
 1:0/0 = 0
@@ -110,11 +109,8 @@ texture = ExtResource("1_0xm2m")
 20:3/0 = 0
 21:3/0 = 0
 22:3/0 = 0
-22:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 23:3/0 = 0
-23:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 24:3/0 = 0
-24:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 25:3/0 = 0
 27:3/0 = 0
 0:4/0 = 0
@@ -138,11 +134,8 @@ texture = ExtResource("1_0xm2m")
 19:4/0 = 0
 20:4/0 = 0
 22:4/0 = 0
-22:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 23:4/0 = 0
-23:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 24:4/0 = 0
-24:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 27:4/0 = 0
 0:5/0 = 0
 1:5/0 = 0
@@ -167,11 +160,8 @@ texture = ExtResource("1_0xm2m")
 20:5/0 = 0
 21:5/0 = 0
 22:5/0 = 0
-22:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 23:5/0 = 0
-23:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 24:5/0 = 0
-24:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 25:5/0 = 0
 26:5/0 = 0
 27:5/0 = 0
@@ -389,12 +379,13 @@ texture = ExtResource("1_0xm2m")
 11:14/0 = 0
 12:14/0 = 0
 
-[sub_resource type="TileSet" id="TileSet_272bh"]
-physics_layer_0/collision_layer = 1
-physics_layer_0/collision_mask = 0
-physics_layer_0/collision_priority = 0.0
-physics_layer_0/physics_material = SubResource("PhysicsMaterial_0xm2m")
-sources/0 = SubResource("TileSetAtlasSource_7mycd")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5vw27"]
+texture = ExtResource("7_272bh")
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_kek77"]
+sources/0 = SubResource("TileSetAtlasSource_272bh")
+sources/1 = SubResource("TileSetAtlasSource_5vw27")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
 size = Vector2(7711, 172.5)
@@ -403,14 +394,14 @@ size = Vector2(7711, 172.5)
 
 [node name="MainLayer" type="TileMapLayer" parent="."]
 texture_filter = 1
-tile_map_data = PackedByteArray("AAAGAAMAAAAXAAQAAAAHAAMAAAAXAAQAAAAIAAMAAAAXAAQAAAAJAAMAAAAXAAQAAAAKAAMAAAAXAAQAAAALAAMAAAAXAAQAAAAMAAMAAAAXAAQAAAAMAAQAAAAXAAQAAAALAAQAAAAXAAQAAAAKAAQAAAAXAAQAAAAJAAQAAAAXAAQAAAAIAAQAAAAXAAQAAAAHAAQAAAAXAAQAAAAGAAQAAAAXAAQAAAAGAAUAAAAXAAQAAAAHAAUAAAAXAAQAAAAIAAUAAAAXAAQAAAAJAAUAAAAXAAQAAAAKAAUAAAAXAAQAAAALAAUAAAAXAAQAAAAMAAUAAAAXAAQAAAAQAAUAAAAXAAQAAAAQAAYAAAAXAAQAAAAQAAcAAAAXAAQAAAARAAcAAAAXAAQAAAASAAcAAAAXAAQAAAATAAcAAAAXAAQAAAAUAAcAAAAXAAQAAAAVAAcAAAAXAAQAAAAVAAYAAAAXAAQAAAAVAAUAAAAXAAQAAAAUAAUAAAAXAAQAAAATAAUAAAAXAAQAAAASAAUAAAAXAAQAAAARAAUAAAAXAAQAAAASAAYAAAAXAAQAAAATAAYAAAAXAAQAAAAUAAYAAAAXAAQAAAARAAYAAAAXAAQAAAAWAAYAAAAXAAQAAAAWAAUAAAAXAAQAAAAWAAcAAAAXAAQAAAAZAAoAAAAXAAQAAAAaAAoAAAAXAAQAAAAbAAoAAAAXAAQAAAAcAAoAAAAXAAQAAAAdAAoAAAAXAAQAAAAeAAoAAAAXAAQAAAAfAAoAAAAXAAQAAAAfAAsAAAAXAAQAAAAeAAsAAAAXAAQAAAAdAAsAAAAXAAQAAAAcAAsAAAAXAAQAAAAbAAsAAAAXAAQAAAAaAAsAAAAXAAQAAAAZAAsAAAAXAAQAAAAUAA8AAAAXAAQAAAAUABAAAAAXAAQAAAAUABEAAAAXAAQAAAAVABEAAAAXAAQAAAAWABEAAAAXAAQAAAAWABAAAAAXAAQAAAAXABAAAAAXAAQAAAAXAA8AAAAXAAQAAAAWAA8AAAAXAAQAAAAVAA8AAAAXAAQAAAAVABAAAAAXAAQAAAAXABEAAAAXAAQAAAA=")
-tile_set = SubResource("TileSet_272bh")
+tile_map_data = PackedByteArray("AAAGAAUAAAAXAAQAAAAHAAUAAAAXAAQAAAAIAAUAAAAXAAQAAAAJAAUAAAAXAAQAAAAKAAUAAAAXAAQAAAALAAUAAAAXAAQAAAAMAAUAAAAXAAQAAAA=")
+tile_set = SubResource("TileSet_kek77")
 
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -1
-position = Vector2(-1, -39)
+position = Vector2(-0.012344778, -0.006263739)
 rotation = -1.5707964
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.20252712, 0.24997805)
 texture = ExtResource("2_7mycd")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_h2yge")]
