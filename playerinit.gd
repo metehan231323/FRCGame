@@ -92,9 +92,14 @@ func _physics_process(delta: float) -> void:
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("move_left", "move_right");
 	if direction:
+		match direction:
+			-1.0:
+				sprite.flip_h = true;
+			1.0:
+				sprite.flip_h = false;
+				
 		velocity.x = direction * speed;
 	else:
-		
 		velocity.x = move_toward(velocity.x, 0, speed);
 	move_and_slide();
 

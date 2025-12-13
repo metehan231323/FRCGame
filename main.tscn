@@ -800,8 +800,10 @@ collision_mask = 1
 floor_block_on_wall = false
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
+zoom = Vector2(4, 4)
 script = ExtResource("3_h2yge")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera2D"]
 
 [node name="Placeholder" type="Sprite2D" parent="."]
 position = Vector2(148, 33)
