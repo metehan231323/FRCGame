@@ -3,15 +3,19 @@ extends Camera2D
 signal CameraStepped;
 @export var CurrentFocus : Node2D;
 @export var debugMode : bool = false;
+@onready var bg = $"../Background";
 var currentClbk : Callable;
 var null_voidClbk = Callable.create(func(): pass, StringName("null_void"));
+
 
 func _ready() -> void:
 	print("Camera initialized"); 
 	CurrentFocus = $"../CharacterBody2D";
 	CameraStepped.connect(func(): if currentClbk.is_valid(): currentClbk.call());
-
-# Changes the focus of the camera to a new Node2D.
+	setSteppedclbk(func():
+		bg.global_position = self.global_position;		
+	)
+# Changes the focus of the camera to a new Node2s.
 #@NewObj --> Node2D
 func changeFocus(NewObj : Node2D) -> void:
 	CurrentFocus = NewObj;
