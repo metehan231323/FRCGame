@@ -1,12 +1,15 @@
-[gd_scene load_steps=12 format=3 uid="uid://dspyygs5le4nb"]
+[gd_scene load_steps=20 format=4 uid="uid://dspyygs5le4nb"]
 
 [ext_resource type="Texture2D" uid="uid://cmqvgo12irw6c" path="res://New/Solaria Demo Tiles.png" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://qoxurnncpy1s" path="res://Init.gd" id="1_kek77"]
 [ext_resource type="Texture2D" uid="uid://b7cqeendc15gk" path="res://assets/sprites/ismetbackground.jpg" id="2_7mycd"]
 [ext_resource type="Texture2D" uid="uid://cry3sepcku3gv" path="res://assets/tiles/rock64_16x16.jpg" id="2_272bh"]
 [ext_resource type="PackedScene" uid="uid://3d6danocgmgj" path="res://Player.tscn" id="2_h2yge"]
+[ext_resource type="Texture2D" uid="uid://0p5wh7ie4m47" path="res://assets/tiles/blank-image-16x16.png" id="3_4c57u"]
 [ext_resource type="Script" uid="uid://d1sdbpv8el428" path="res://Camera.gd" id="3_h2yge"]
 [ext_resource type="AudioStream" uid="uid://dfvjf5s50ejun" path="res://assets/sounds/save.mp3" id="4_1bvp3"]
 [ext_resource type="Script" uid="uid://bxqbqktfoj2bd" path="res://Modules/MusicHandler.gd" id="5_lquwl"]
+[ext_resource type="Script" uid="uid://dwsdu2osqx0mi" path="res://FadeTransition.gd" id="8_5vw27"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_272bh"]
 texture = ExtResource("1_0xm2m")
@@ -379,6 +382,10 @@ texture = ExtResource("1_0xm2m")
 11:14/0 = 0
 12:14/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_efxa6"]
+texture = ExtResource("3_4c57u")
+0:0/0 = 0
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5vw27"]
 texture = ExtResource("2_272bh")
 0:0/0 = 0
@@ -386,16 +393,101 @@ texture = ExtResource("2_272bh")
 
 [sub_resource type="TileSet" id="TileSet_kek77"]
 physics_layer_0/collision_layer = 1
+custom_data_layer_0/name = "transition_target"
+custom_data_layer_0/type = 4
+custom_data_layer_1/name = "transition_pos"
+custom_data_layer_1/type = 5
 sources/0 = SubResource("TileSetAtlasSource_272bh")
 sources/2 = SubResource("TileSetAtlasSource_5vw27")
+sources/1 = SubResource("TileSetAtlasSource_efxa6")
+
+[sub_resource type="Animation" id="Animation_kek77"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FadeRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_5vw27"]
+resource_name = "fade_to_black"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FadeRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_4c57u"]
+resource_name = "fade_to_normal"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_efxa6"]
+_data = {
+&"RESET": SubResource("Animation_kek77"),
+&"fade_to_black": SubResource("Animation_5vw27"),
+&"fade_to_normal": SubResource("Animation_4c57u")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
 size = Vector2(7711, 172.5)
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_kek77")
 
 [node name="MainLayer" type="TileMapLayer" parent="."]
 texture_filter = 1
+tile_map_data = PackedByteArray("AAAHAAYAAgAAAAAAAAAIAAYAAgAAAAAAAAAJAAYAAgAAAAAAAAAKAAYAAgAAAAAAAAALAAYAAgAAAAAAAAAMAAYAAgAAAAAAAAAMAAUAAgAAAAAAAAALAAUAAgAAAAAAAAAKAAUAAgAAAAAAAAAJAAUAAgAAAAAAAAAIAAUAAgAAAAAAAAAHAAUAAgAAAAAAAAA=")
 tile_set = SubResource("TileSet_kek77")
 
 [node name="Background" type="Sprite2D" parent="."]
@@ -414,7 +506,22 @@ floor_block_on_wall = false
 zoom = Vector2(4, 4)
 script = ExtResource("3_h2yge")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera2D"]
+[node name="FadeOutLayer" type="CanvasLayer" parent="Camera2D"]
+scale = Vector2(5, 5)
+transform = Transform2D(5, 0, 0, 5, 0, 0)
+script = ExtResource("8_5vw27")
+
+[node name="FadeRect" type="ColorRect" parent="Camera2D/FadeOutLayer"]
+z_index = 1000
+offset_top = 0.19999695
+offset_right = 230.4
+offset_bottom = 130.99998
+color = Color(1, 1, 1, 0)
+
+[node name="FadePlayer" type="AnimationPlayer" parent="Camera2D/FadeOutLayer"]
+libraries = {
+&"": SubResource("AnimationLibrary_efxa6")
+}
 
 [node name="Placeholder" type="Sprite2D" parent="."]
 position = Vector2(148, 33)

@@ -10,13 +10,14 @@ var null_voidClbk : Callable = Callable.create(func(): pass, StringName("null_vo
 var cutsceneActive : bool = false;
 
 func _ready() -> void:
-	Display("res://assets/sprites/0.01.png");
+	# Display("res://assets/sprites/0.01.png");
 	print("Camera initialized"); 
 	CurrentFocus = $"../CharacterBody2D";
 	CameraStepped.connect(func(): if currentClbk.is_valid(): currentClbk.call());
 	setSteppedclbk(func():
 		bg.global_position = self.global_position;		
 	)
+	
 	
 # Changes the focus of the camera to a new Node2s.
 #@NewObj --> Node2D
@@ -51,10 +52,9 @@ func _process(delta: float) -> void:
 	if currentClbk != null_voidClbk || currentClbk == null:
 		CameraStepped.emit();
 		
-func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		pass
-		# event.connect(func(): CutsceneShifted.emit());
+func _input(event) -> void:
+	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT and event.is_pressed() and cutsceneActive == true:
+		CutsceneShifted.emit();
 		
 func autofarm(_img : Image) -> void:
 	pass
@@ -75,13 +75,15 @@ func createSpriteFromPath(path : String) -> Sprite2D:
 	var texture = ImageTexture.create_from_image(img);
 	var sprite = Sprite2D.new()
 	sprite.scale = Vector2(0.5,0.5);
-	sprite.texture = texture;
+	sprite.texture = texture;	
 	return sprite;
 
-func FadeToBlack(_sprite : Sprite2D) -> void:
-	pass	
+# Gets the current sprite and fades it to black. Deletes the sprite after it is finished.
+func FadeToBlack(sprite : Sprite2D) -> void:
+	pass
 	
-func FadeInFromBlack(_sprite : Sprite2D) -> void:
+# Spawns in the sprite in the camera already blacked out, then fades it in.
+func FadeInFromBlack(sprite : Sprite2D) -> void:
 	pass
 	
 # lerp opacity or some shit idk, dont overlay a pic though
