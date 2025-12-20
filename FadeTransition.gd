@@ -14,6 +14,7 @@ func supply(rect : ColorRect, player : AnimationPlayer) -> void:
 func changeclbk(clbktype : TransitionType, clbk : Callable) -> void:
 	match clbktype:
 		TransitionType.ROOM_TRANSITION:
+			print("set clbk to " , clbk);
 			TransitionClbk = clbk;
 		TransitionType.OTHER:
 			OtherClbk = clbk;
@@ -33,10 +34,12 @@ func transition(type : TransitionType = TransitionType.ROOM_TRANSITION) -> void:
 			TransitionType.ROOM_TRANSITION:
 				fadeplayer.play("fade_to_black");
 				if TransitionClbk.is_valid():
+					print("call clbk");
 					TransitionClbk.call();
 			TransitionType.OTHER:
 				fadeplayer.play("fade_to_black");
 				if OtherClbk.is_valid():
+					print("call clbk");
 					OtherClbk.call();
 	else:
 		await Global.wait(0.1)

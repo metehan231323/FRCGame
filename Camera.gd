@@ -12,7 +12,7 @@ var cutsceneActive : bool = false;
 func _ready() -> void:
 	# Display("res://assets/sprites/0.01.png");
 	print("Camera initialized"); 
-	CurrentFocus = $"../CharacterBody2D";
+	CurrentFocus = $"../Player";
 	CameraStepped.connect(func(): if currentClbk.is_valid(): currentClbk.call());
 	setSteppedclbk(func():
 		bg.global_position = self.global_position;		
@@ -60,8 +60,8 @@ func autofarm(_img : Image) -> void:
 	pass
 	
 # Displays an image directly on the camera. Fades in from black.
-func Display(path : String) -> void:
-	var img = load(path).get_image();
+func Display(spr : Sprite2D) -> void:
+	var img = load(spr.get_path()).get_image();
 	var texture = ImageTexture.create_from_image(img);
 	var newsprite = Sprite2D.new();
 	newsprite.scale = Vector2(0.5, 0.5);
