@@ -32,7 +32,7 @@ func area_entered_clbk(area : Area2D) -> void:
 func _ready() -> void:
 	connectListeners();
 	print("Connected signals");
-	FadeTransition.transition(FadeTransition.TransitionType.OTHER);
+	# FadeTransition.transition(FadeTransition.TransitionType.OTHER);
 	
 
 	
