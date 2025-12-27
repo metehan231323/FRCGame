@@ -1,10 +1,97 @@
-[gd_scene load_steps=2 format=3 uid="uid://dsr3vrh4sebyt"]
+[gd_scene load_steps=9 format=3 uid="uid://dsr3vrh4sebyt"]
+
+[ext_resource type="Script" uid="uid://cwdxhfxcqe84i" path="res://SnakeBrain.gd" id="1_baghe"]
+[ext_resource type="Texture2D" uid="uid://cwvkhi00fwe7l" path="res://assets/sprites/Yılan1.png" id="2_gxkgb"]
+[ext_resource type="Texture2D" uid="uid://2kg1qa5faugg" path="res://assets/sprites/Yılan2.png" id="3_2x2sd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ya8rp"]
+size = Vector2(131, 21)
+
+[sub_resource type="Animation" id="Animation_olj5u"]
+resource_name = "Dying"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_dw1s1"]
+resource_name = "Crawling"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_gxkgb"), ExtResource("3_2x2sd"), ExtResource("2_gxkgb")]
+}
+
+[sub_resource type="Animation" id="Animation_ej4wj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_gxkgb")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Model:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xox5r"]
+_data = {
+&"Crawling": SubResource("Animation_dw1s1"),
+&"Dying": SubResource("Animation_olj5u"),
+&"RESET": SubResource("Animation_ej4wj")
+}
 
 [node name="Snake" type="CharacterBody2D"]
+script = ExtResource("1_baghe")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(55.5, -0.5)
 shape = SubResource("RectangleShape2D_ya8rp")
+
+[node name="SightRay" type="RayCast2D" parent="."]
+target_position = Vector2(-100, 0)
+
+[node name="GroundRay" type="RayCast2D" parent="."]
+target_position = Vector2(-45, 22)
+
+[node name="Model" type="Sprite2D" parent="."]
+position = Vector2(61, 0)
+scale = Vector2(0.111352846, 0.10532998)
+texture = ExtResource("2_gxkgb")
+
+[node name="Animator" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_xox5r")
+}

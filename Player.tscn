@@ -9,20 +9,20 @@ size = Vector2(206.66437, 93.73961)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cxr5p"]
 size = Vector2(90, 45)
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D"]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_kpjcp")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Model" type="Sprite2D" parent="."]
 position = Vector2(6.677834, -0.42106915)
 scale = Vector2(-0.10887218, 0.046938535)
 texture = ExtResource("2_kpjcp")
 flip_h = true
 
-[node name="HurtArea" type="Area2D" parent="Sprite2D"]
+[node name="HurtArea" type="Area2D" parent="Model"]
 
-[node name="Hurtbox" type="CollisionShape2D" parent="Sprite2D/HurtArea"]
+[node name="Hurtbox" type="CollisionShape2D" parent="Model/HurtArea"]
 texture_filter = 1
 position = Vector2(10.818493, 8.97065)
 scale = Vector2(2, 5)
@@ -33,3 +33,5 @@ debug_color = Color(1, 1, 1, 0.41960785)
 position = Vector2(5.5, 0.25)
 scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_cxr5p")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

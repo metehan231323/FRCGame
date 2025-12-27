@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0p5wh7ie4m47"
-path="res://.godot/imported/blank-image-16x16.png-a3d468c823deaf6e70521ecab8a03c85.ctex"
+uid="uid://cry3sepcku3gv"
+path="res://.godot/imported/Rock.jpg-a6cb18e4f04b6ce313467f7c26ebc773.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tiles/blank-image-16x16.png"
-dest_files=["res://.godot/imported/blank-image-16x16.png-a3d468c823deaf6e70521ecab8a03c85.ctex"]
+source_file="res://assets/tiles/Rock.jpg"
+dest_files=["res://.godot/imported/Rock.jpg-a6cb18e4f04b6ce313467f7c26ebc773.ctex"]
 
 [params]
 

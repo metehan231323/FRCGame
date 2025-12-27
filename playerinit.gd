@@ -6,11 +6,11 @@ extends CharacterBody2D
 @export var jumpforce : int = 200;
 @export var hasDoubleJump : bool = false;
 @export var Health : int = 3;
-@export var gravityprone = true; # controls gravityd
+@export var gravityprone = true; # controls gravity
 @export var iframes = false; # controls if char has iframes
-@onready var sprite = $Sprite2D;
-@onready var HurtBox = $Sprite2D/HurtArea/Hurtbox;
-@onready var HurtArea = $Sprite2D/HurtArea;
+@onready var sprite = $Model;
+@onready var HurtBox = $Model/HurtArea/Hurtbox;
+@onready var HurtArea = $Model/HurtArea;
 @onready var Cam = $"../Camera2D";
 @onready var DeathZone = $"../DeathZone";
 var TimesJumped : int = 0;
@@ -34,9 +34,6 @@ func _ready() -> void:
 	print("Connected signals");
 	# FadeTransition.transition(FadeTransition.TransitionType.OTHER);
 	
-
-	
-
 	# Cam.setSteppedclbk(func(): print("this is from the clbk"));
 	# await get_tree().create_timer(2.0).timeout;
 	# Cam.clearSteppedclbk();
