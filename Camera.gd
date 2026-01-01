@@ -10,7 +10,8 @@ var null_voidClbk : Callable = Callable.create(func(): pass, StringName("null_vo
 var cutsceneActive : bool = false;
 
 func _ready() -> void:
-	# Display("res://assets/sprites/0.01.png");
+	var blurred = Global.BlurImage(bg);
+	# Display(blurred);
 	print("Camera initialized"); 
 	CurrentFocus = $"../Player";
 	CameraStepped.connect(func(): if currentClbk.is_valid(): currentClbk.call());
@@ -61,12 +62,9 @@ func autofarm(_img : Image) -> void:
 	
 # Displays an image directly on the camera. Fades in from black.
 func Display(spr : Sprite2D) -> void:
-	var img = load(spr.get_path()).get_image();
-	var texture = ImageTexture.create_from_image(img);
-	var newsprite = Sprite2D.new();
-	newsprite.scale = Vector2(0.5, 0.5);
-	newsprite.texture = texture;
-	add_child(newsprite);
+	spr.rotation_degrees = 270;
+	spr.scale = Vector2(2,2);
+	add_child(spr);
 	#var tween = create_tween().set_parallel(false)
 	#tween.tween_property(newsprite, "modulate:a", 1.0, 1.0).from_current();
 

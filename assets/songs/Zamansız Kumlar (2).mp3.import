@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cxwca57e8af8e"
+path="res://.godot/imported/Zamansız Kumlar (2).mp3-c018e9e68a82685ab98c9b0130eef177.mp3str"
+
+[deps]
+
+source_file="res://assets/songs/Zamansız Kumlar (2).mp3"
+dest_files=["res://.godot/imported/Zamansız Kumlar (2).mp3-c018e9e68a82685ab98c9b0130eef177.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

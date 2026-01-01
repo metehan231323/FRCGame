@@ -1,16 +1,30 @@
-[gd_scene load_steps=5 format=3 uid="uid://3d6danocgmgj"]
+[gd_scene load_steps=9 format=3 uid="uid://3d6danocgmgj"]
 
 [ext_resource type="Script" uid="uid://cp1byl81dtixm" path="res://playerinit.gd" id="1_kpjcp"]
 [ext_resource type="Texture2D" uid="uid://dyw3y308amcrf" path="res://assets/sprites/Scorpion.png" id="2_kpjcp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e80uo"]
-size = Vector2(206.66437, 93.73961)
+size = Vector2(169.92404, 72.43515)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kpjcp"]
+size = Vector2(321.47787, 31.304459)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cxr5p"]
-size = Vector2(90, 45)
+size = Vector2(74, 34)
+
+[sub_resource type="Animation" id="Animation_e80uo"]
+resource_name = "Damaged"
+
+[sub_resource type="Animation" id="Animation_kne1u"]
+resource_name = "Walk"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cxr5p"]
+_data = {
+&"Damaged": SubResource("Animation_e80uo"),
+&"Walk": SubResource("Animation_kne1u")
+}
 
 [node name="Player" type="CharacterBody2D"]
-collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_kpjcp")
 
@@ -24,14 +38,23 @@ flip_h = true
 
 [node name="Hurtbox" type="CollisionShape2D" parent="Model/HurtArea"]
 texture_filter = 1
-position = Vector2(10.818493, 8.97065)
+position = Vector2(-25.921844, 62.231785)
 scale = Vector2(2, 5)
 shape = SubResource("RectangleShape2D_e80uo")
 debug_color = Color(1, 1, 1, 0.41960785)
 
+[node name="PlayerStomp" type="Area2D" parent="Model"]
+
+[node name="PlayerStomp" type="CollisionShape2D" parent="Model/PlayerStomp"]
+position = Vector2(-25.921822, 227.66745)
+shape = SubResource("RectangleShape2D_kpjcp")
+
 [node name="Hitbox" type="CollisionShape2D" parent="."]
-position = Vector2(5.5, 0.25)
+position = Vector2(9.5, 2.5)
 scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_cxr5p")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="Animator" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_cxr5p")
+}

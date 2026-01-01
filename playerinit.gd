@@ -30,6 +30,7 @@ func area_entered_clbk(area : Area2D) -> void:
 	
 	
 func _ready() -> void:
+	add_to_group("Player");
 	connectListeners();
 	print("Connected signals");
 	# FadeTransition.transition(FadeTransition.TransitionType.OTHER);
@@ -48,10 +49,18 @@ func _input(keyevent : InputEvent) -> void:
 	if keyevent.as_text() == "P":
 		get_tree().reload_current_scene();
 	
-func takeDamage(amount : int, triggeriframes : bool = false, iframetime : float = 0.0) -> void:
-	self.Health -= amount;
-	if triggeriframes == true:
-		enableIFrames(iframetime);
+func takeDamage(amount : int, triggeriframes : bool = true, iframetime : float = 1.0) -> void:
+	if iframes == false:
+		self.Health -= amount;
+		if self.Health <= 0:
+			GameOver();
+		if triggeriframes == true:
+			enableIFrames(iframetime);
+		
+		
+func applyKnockback(direction : Vector2, strength : float) -> void: 
+	velocity = direction * strength
+	move_and_slide()
 	
 # Handles all jump states
 func processJump() -> void:
@@ -88,8 +97,6 @@ func _physics_process(delta: float) -> void:
 	# Handle jump.
 	processJump();
 	
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("move_left", "move_right");
 	if direction:
 		match direction:
@@ -101,6 +108,7 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direction * speed;
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed);
+		
 	move_and_slide();
 
 	

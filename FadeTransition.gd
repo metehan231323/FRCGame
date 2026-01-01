@@ -14,7 +14,6 @@ func supply(rect : ColorRect, player : AnimationPlayer) -> void:
 func changeclbk(clbktype : TransitionType, clbk : Callable) -> void:
 	match clbktype:
 		TransitionType.ROOM_TRANSITION:
-			print("set clbk to " , clbk);
 			TransitionClbk = clbk;
 		TransitionType.OTHER:
 			OtherClbk = clbk;

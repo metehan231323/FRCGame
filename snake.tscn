@@ -1,27 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dsr3vrh4sebyt"]
+[gd_scene load_steps=11 format=3 uid="uid://dsr3vrh4sebyt"]
 
 [ext_resource type="Script" uid="uid://cwdxhfxcqe84i" path="res://SnakeBrain.gd" id="1_baghe"]
 [ext_resource type="Texture2D" uid="uid://cwvkhi00fwe7l" path="res://assets/sprites/Yılan1.png" id="2_gxkgb"]
 [ext_resource type="Texture2D" uid="uid://2kg1qa5faugg" path="res://assets/sprites/Yılan2.png" id="3_2x2sd"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ya8rp"]
-size = Vector2(131, 21)
-
-[sub_resource type="Animation" id="Animation_olj5u"]
-resource_name = "Dying"
-length = 0.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Model:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.6),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
+[ext_resource type="AudioStream" uid="uid://bfb53quatms3r" path="res://assets/sounds/snake-hiss.wav" id="4_olj5u"]
 
 [sub_resource type="Animation" id="Animation_dw1s1"]
 resource_name = "Crawling"
@@ -37,6 +19,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [ExtResource("2_gxkgb"), ExtResource("3_2x2sd"), ExtResource("2_gxkgb")]
+}
+
+[sub_resource type="Animation" id="Animation_olj5u"]
+resource_name = "Dying"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_ej4wj"]
@@ -73,12 +71,14 @@ _data = {
 &"RESET": SubResource("Animation_ej4wj")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2x2sd"]
+size = Vector2(34, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ya8rp"]
+size = Vector2(67, 15.25)
+
 [node name="Snake" type="CharacterBody2D"]
 script = ExtResource("1_baghe")
-
-[node name="Hitbox" type="CollisionShape2D" parent="."]
-position = Vector2(55.5, -0.5)
-shape = SubResource("RectangleShape2D_ya8rp")
 
 [node name="SightRay" type="RayCast2D" parent="."]
 target_position = Vector2(-100, 0)
@@ -87,11 +87,32 @@ target_position = Vector2(-100, 0)
 target_position = Vector2(-45, 22)
 
 [node name="Model" type="Sprite2D" parent="."]
-position = Vector2(61, 0)
-scale = Vector2(0.111352846, 0.10532998)
+position = Vector2(37.000008, 2.0000007)
+scale = Vector2(0.058544304, 0.08121828)
 texture = ExtResource("2_gxkgb")
 
 [node name="Animator" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_xox5r")
 }
+
+[node name="HeadArea" type="Area2D" parent="."]
+position = Vector2(-7, 0)
+
+[node name="Head" type="CollisionShape2D" parent="HeadArea"]
+position = Vector2(24, -4)
+shape = SubResource("RectangleShape2D_2x2sd")
+
+[node name="HitboxArea" type="Area2D" parent="."]
+position = Vector2(-7, 0)
+
+[node name="Hitbox" type="CollisionShape2D" parent="HitboxArea"]
+position = Vector2(40, 2)
+shape = SubResource("RectangleShape2D_ya8rp")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(33.5, 2)
+shape = SubResource("RectangleShape2D_ya8rp")
+
+[node name="Mouth" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_olj5u")

@@ -14,6 +14,7 @@ func _ready() -> void:
 				player.set("Speed", 100);	
 			);
 		else:
+			# the player somehow got nuked i dunno? d
 			push_error("Player not found");
 	var clbk2 = func():
 		if get_node("Player"):
@@ -28,3 +29,5 @@ func _ready() -> void:
 	FadeTransition.changeclbk(FadeTransition.TransitionType.OTHER, clbk1);
 	FadeTransition.changeclbk(FadeTransition.TransitionType.ROOM_TRANSITION, clbk2);
 	FadeTransition.supply(FadeRect, FadePlayer);
+		
+	
